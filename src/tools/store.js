@@ -1,5 +1,6 @@
 import { createStore } from "redux";
 import productsJson from "../JSON/sinusApiData.json";
+import { act } from "react";
 
 const initialValuesProducts = productsJson;
 
@@ -30,6 +31,18 @@ const productsReducer = (
       productList: state.productList, //holds the values of the Product List
       cartList: state.cartList, //holds the values of the cart
       totalSuma: action.suma,
+    };
+  }
+
+  if (action.type === "CHANGE_QUANTITY") {
+    return {
+      ...state, // Copy existing state
+      cartList: state.cartList.map(
+        (p) =>
+          p.id === action.payload.id // Check if the product matches the given id
+            ? { ...p, ...(p.quantity = action.payload.newQuantity) } // Update the product with new data
+            : p // Keep the other products unchanged
+      ),
     };
   }
 

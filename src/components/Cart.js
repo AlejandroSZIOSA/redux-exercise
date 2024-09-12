@@ -8,7 +8,6 @@ export default function Cart() {
 
   useEffect(() => {
     handleTotalSumma();
-    /* console.log(totalSumma); */
   }, [shoppingCart]);
 
   function handleRemoveProductById(id) {
@@ -21,6 +20,14 @@ export default function Cart() {
       totalSuma += p.price;
     });
     dispatch({ type: "TOTAL_SUMA", suma: totalSuma });
+  }
+
+  function handleQuantityProduct(p, value) {
+    console.log(value);
+    dispatch({
+      type: "CHANGE_QUANTITY",
+      payload: { ...p, ...(p.quantity = value) },
+    });
   }
 
   return (
@@ -39,8 +46,12 @@ export default function Cart() {
               }}
             >
               <h2>{p.name}</h2>
+              <p>{p.quantity}</p>
               <label>Quantity:</label>
-              <input type="number" />
+              <input
+                type="number"
+                onChange={(e) => handleQuantityProduct(p, e.target.value)}
+              />
               <button onClick={() => handleRemoveProductById(p.id)}>
                 Remove
               </button>
