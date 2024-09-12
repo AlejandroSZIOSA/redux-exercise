@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Cart() {
-  const [totalSumma, setTotalSuma] = useState(0);
   const shoppingCart = useSelector((state) => state.cartList);
-
+  const totalSumma = useSelector((state) => state.totalSuma);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setTotalSuma(handleTotalSumma);
+    handleTotalSumma();
+    /* console.log(totalSumma); */
   }, [shoppingCart]);
 
   function handleRemoveProductById(id) {
@@ -16,12 +16,11 @@ export default function Cart() {
   }
 
   function handleTotalSumma() {
-    let totalSum = 0;
-
+    let totalSuma = 0;
     shoppingCart.forEach((p) => {
-      totalSum += p.price;
+      totalSuma += p.price;
     });
-    return totalSum;
+    dispatch({ type: "TOTAL_SUMA", suma: totalSuma });
   }
 
   return (

@@ -7,7 +7,7 @@ const productsReducer = (
   state = {
     productList: initialValuesProducts,
     cartList: [],
-    cartTotalSuma: 0,
+    totalSuma: 0,
   },
   action
 ) => {
@@ -22,6 +22,14 @@ const productsReducer = (
     return {
       ...state, // Copy the existing state
       cartList: state.cartList.filter((product) => product.id !== action.id),
+    };
+  }
+
+  if (action.type === "TOTAL_SUMA") {
+    return {
+      productList: state.productList, //holds the values of the Product List
+      cartList: state.cartList, //holds the values of the cart
+      totalSuma: action.suma,
     };
   }
 
