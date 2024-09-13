@@ -1,6 +1,5 @@
 import { createStore } from "redux";
 import productsJson from "../JSON/sinusApiData.json";
-import { act } from "react";
 
 const initialValuesProducts = productsJson;
 
