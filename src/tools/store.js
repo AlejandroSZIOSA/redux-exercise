@@ -1,19 +1,19 @@
-//import { createStore } from "redux";
-import productsJson from "../JSON/sinusApiData.json";
+import PRODUCTS_JSON from "../JSON/sinusApiData.json";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  initialValuesProducts: productsJson,
+  productListJson: PRODUCTS_JSON,
   cartList: [],
   totalSuma: 0,
 };
 
+//Using keywords payload
 const productsSlice = createSlice({
   name: "products",
   initialState: initialState,
   reducers: {
     ADD_PRODUCT_FN(state, action) {
-      return { ...state, cartList: [...state.cartList, action.product] };
+      return { ...state, cartList: [...state.cartList, action.payload] };
     },
   },
 });

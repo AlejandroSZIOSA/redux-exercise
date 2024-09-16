@@ -1,14 +1,14 @@
 /* import { useState, useEffect } from "react"; */
 /* import productsJson from "./JSON/sinusApiData.json"; */
 
-/* import Cart from "./components/Cart"; */
+import Cart from "./components/Cart";
 import Products from "./components/Products";
 
 function App() {
   return (
     <div>
       <Products />
-      {/*   <Cart /> */}
+      <Cart />
     </div>
   );
 }

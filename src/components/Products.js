@@ -3,11 +3,12 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { productsSliceActions } from "../tools/store";
 
+//Component
 function ProductCardView(props) {
   const { name, price } = props.productInfo;
   return (
     <div style={{ display: "flex", gap: 20, padding: "5px 0px 5px 0px" }}>
-      <p>{name}</p>
+      <p>Product: {name}</p>
       <p>Price: {price}</p>
       <button onClick={() => props.handleAddProduct(props.productInfo)}>
         Add to Cart
@@ -16,13 +17,11 @@ function ProductCardView(props) {
   );
 }
 
+//Component
 export default function Products() {
-  const products = useSelector((state) => state.initialValuesProducts); //1-Retrieve product list
+  const products = useSelector((state) => state.productListJson); //1-Retrieve product list
 
   const dispatch = useDispatch(); //2-Dispatch Actions
-
-  //Add new Product to the shopping cart List
-  //Callback FN with Params Object
 
   console.log(products);
 
@@ -33,10 +32,7 @@ export default function Products() {
       price: p.price,
       quantity: 0, //Add quantity
     };
-    dispatch({
-      type: "ADD_PRODUCT",
-      product: productCartInfo,
-    });
+    dispatch(productsSliceActions.ADD_PRODUCT_FN(productCartInfo));
   }
 
   return (
