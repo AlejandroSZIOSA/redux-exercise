@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { productsSliceActions } from "../tools/store";
+import { productsActions } from "../tools/store";
 
 export default function Cart() {
-  const shoppingCart = useSelector((state) => state.cartList);
-  const totalSumma = useSelector((state) => state.totalSuma);
+  const shoppingCart = useSelector((state) => state.products.cartList);
+  const totalSumma = useSelector((state) => state.products.totalSuma);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function Cart() {
   }, [shoppingCart]);
 
   function handleRemoveProductById(id) {
-    dispatch(productsSliceActions.REMOVE_PRODUCT(id));
+    dispatch(productsActions.REMOVE_PRODUCT(id));
   }
 
   function handleTotalSumma() {
@@ -20,12 +20,12 @@ export default function Cart() {
     shoppingCart.forEach((p) => {
       totalSuma += p.price;
     });
-    dispatch(productsSliceActions.CHANGE_TOTAL_SUMMA({ totalSuma }));
+    dispatch(productsActions.CHANGE_TOTAL_SUMMA({ totalSuma }));
   }
 
   //FIX:IF MULTIPLE VALUES, payload must be an object
   function handleQuantityProduct(p, newQuantity) {
-    dispatch(productsSliceActions.CHANGE_QUANTITY({ p, newQuantity }));
+    dispatch(productsActions.CHANGE_QUANTITY({ p, newQuantity }));
   }
 
   return (

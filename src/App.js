@@ -2,13 +2,13 @@
 /* import productsJson from "./JSON/sinusApiData.json"; */
 
 import Cart from "./components/Cart";
-import Header from "./components/Header";
+/* import Header from "./components/Header"; */
 import Products from "./components/Products";
 
 function App() {
   return (
     <div>
-      <Header />
+      {/*   <Header /> */}
       <Products />
       <Cart />
     </div>

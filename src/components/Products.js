@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { productsSliceActions } from "../tools/store";
+import { productsActions } from "../tools/store";
 
 //Component
 function ProductCardView(props) {
@@ -19,7 +19,7 @@ function ProductCardView(props) {
 
 //Component
 export default function Products() {
-  const products = useSelector((state) => state.productListJson); //1-Retrieve product list
+  const products = useSelector((state) => state.products.productList); //1-Retrieve product list
 
   const dispatch = useDispatch(); //2-Dispatch Actions
 
@@ -32,7 +32,7 @@ export default function Products() {
       price: p.price,
       quantity: 0, //Add quantity
     };
-    dispatch(productsSliceActions.ADD_PRODUCT(productCartInfo));
+    dispatch(productsActions.ADD_PRODUCT(productCartInfo));
   }
 
   return (

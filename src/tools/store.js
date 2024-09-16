@@ -2,7 +2,7 @@ import PRODUCTS_JSON from "../JSON/sinusApiData.json";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  productListJson: PRODUCTS_JSON,
+  productList: PRODUCTS_JSON,
   cartList: [],
   totalSuma: 0,
 };
@@ -44,19 +44,27 @@ const productsSlice = createSlice({
   },
 });
 
-const shoppingCartSlice = {
+const shoppingCartSlice = createSlice({
   name: "shoppingCartGlobalInfo",
   initialState: initialStateShoppingCart,
-
   reducers: {
     CHANGE_TOTAL_PRODUCTS_SHOPPING_CART(state, action) {
       state.totalProducts = action.payload;
     },
   },
-};
+});
 
-const store = configureStore({ reducer: productsSlice.reducer });
+//3 Passing multiple slices to the store "Reducers"
+const store = configureStore({
+  reducer: {
+    products: productsSlice.reducer,
+    shoppingCartGlobalInfo: shoppingCartSlice.reducer,
+  },
+});
 
-export const productsSliceActions = productsSlice.actions;
+//1 separate slices "Actions"
+export const productsActions = productsSlice.actions;
+//2 separate slices "Actions"
+export const shoppingCartActions = shoppingCartSlice.actions;
 
 export default store;
