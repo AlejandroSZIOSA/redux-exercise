@@ -1,6 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function Header() {
+  const totalProducts = useSelector(
+    (state) => state.SHOPPING_CART_GLOBAL_INFO.totalProducts
+  );
   return (
     <header
       style={{
@@ -10,8 +14,8 @@ export default function Header() {
         gap: 60,
       }}
     >
-      <h2>Sinnus Shoping Cart Web-App</h2>
-      <p>🛒</p>
+      <h2>Sinnus Shopping Cart Web-App</h2>
+      <p>🛒 : {totalProducts}</p>
     </header>
   );
 }

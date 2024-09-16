@@ -1,16 +1,25 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { productsActions } from "../tools/store";
+import { productsActions, shoppingCartActions } from "../tools/store";
 
 //Component
 function ProductCardView(props) {
   const { name, price } = props.productInfo;
+  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+
   return (
     <div style={{ display: "flex", gap: 20, padding: "5px 0px 5px 0px" }}>
       <p>Product: {name}</p>
       <p>Price: {price}</p>
-      <button onClick={() => props.handleAddProduct(props.productInfo)}>
+      <button
+        /* Calling multiple functions */
+        onClick={() => {
+          props.handleAddProduct(props.productInfo);
+          setIsBtnDisabled(true);
+        }}
+        disabled={isBtnDisabled}
+      >
         Add to Cart
       </button>
     </div>
@@ -20,11 +29,21 @@ function ProductCardView(props) {
 //Component
 export default function Products() {
   const products = useSelector((state) => state.PRODUCTS.productList); //1-Retrieve product list
+  const shoppingCart = useSelector((state) => state.PRODUCTS.cartList);
 
+  /*   console.log(shoppingCart.length); */
   const dispatch = useDispatch(); //2-Dispatch Actions
 
-  console.log(products);
+  //Fix problem
+  useEffect(() => {
+    dispatch(
+      shoppingCartActions.CHANGE_TOTAL_PRODUCTS_SHOPPING_CART(
+        shoppingCart.length
+      )
+    );
+  }, [handleAddProduct]);
 
+  //Callback FN
   function handleAddProduct(p) {
     const productCartInfo = {
       id: p.id,
