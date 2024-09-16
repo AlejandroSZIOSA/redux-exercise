@@ -12,13 +12,9 @@ const productsSlice = createSlice({
   name: "products",
   initialState: initialState,
   reducers: {
-    GET_PRODUCT_LIST_FN(state) {
-      return state.initialValuesProducts;
-    },
-
-    /* ADD_PRODUCT_FN(state) {
+    ADD_PRODUCT_FN(state, action) {
       return { ...state, cartList: [...state.cartList, action.product] };
-    }, */
+    },
   },
 });
 
