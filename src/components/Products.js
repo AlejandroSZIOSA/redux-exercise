@@ -19,7 +19,7 @@ function ProductCardView(props) {
 
 //Component
 export default function Products() {
-  const products = useSelector((state) => state.products.productList); //1-Retrieve product list
+  const products = useSelector((state) => state.PRODUCTS.productList); //1-Retrieve product list
 
   const dispatch = useDispatch(); //2-Dispatch Actions
 

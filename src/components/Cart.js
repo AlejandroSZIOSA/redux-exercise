@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { productsActions } from "../tools/store";
 
 export default function Cart() {
-  const shoppingCart = useSelector((state) => state.products.cartList);
-  const totalSumma = useSelector((state) => state.products.totalSuma);
+  const shoppingCart = useSelector((state) => state.PRODUCTS.cartList);
+  const totalSumma = useSelector((state) => state.PRODUCTS.totalSuma);
   const dispatch = useDispatch();
 
   useEffect(() => {

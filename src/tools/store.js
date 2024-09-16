@@ -57,8 +57,8 @@ const shoppingCartSlice = createSlice({
 //3 Passing multiple slices to the store "Reducers"
 const store = configureStore({
   reducer: {
-    products: productsSlice.reducer,
-    shoppingCartGlobalInfo: shoppingCartSlice.reducer,
+    PRODUCTS: productsSlice.reducer,
+    SHOPPING_CART_GLOBAL_INFO: shoppingCartSlice.reducer,
   },
 });
 
