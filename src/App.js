@@ -7,6 +7,7 @@ import Products from "./components/Products";
 function App() {
   return (
     <div>
+      <h1 style={{ textAlign: "center" }}>SINUS Shopping cart</h1>
       <Products />
       <Cart />
     </div>
