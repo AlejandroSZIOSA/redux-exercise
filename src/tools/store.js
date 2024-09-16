@@ -7,6 +7,11 @@ const initialState = {
   totalSuma: 0,
 };
 
+//Testing multiple slices
+const initialStateShoppingCart = {
+  totalProducts: 0,
+};
+
 //Using keywords payload
 const productsSlice = createSlice({
   name: "products",
@@ -38,6 +43,17 @@ const productsSlice = createSlice({
     },
   },
 });
+
+const shoppingCartSlice = {
+  name: "shoppingCartGlobalInfo",
+  initialState: initialStateShoppingCart,
+
+  reducers: {
+    CHANGE_TOTAL_PRODUCTS_SHOPPING_CART(state, action) {
+      state.totalProducts = action.payload;
+    },
+  },
+};
 
 const store = configureStore({ reducer: productsSlice.reducer });
 
