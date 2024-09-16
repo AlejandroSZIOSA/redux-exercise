@@ -12,16 +12,29 @@ const productsSlice = createSlice({
   name: "products",
   initialState: initialState,
   reducers: {
-    ADD_PRODUCT_FN(state, action) {
-      return { ...state, cartList: [...state.cartList, action.payload] };
+    ADD_PRODUCT(state, action) {
+      // Mutating the array directly
+      state.cartList.push(action.payload);
     },
+
+    REMOVE_PRODUCT(state, action) {
+      // Mutating the array directly
+      const index = state.cartList.findIndex((p) => p.id === action.payload);
+      if (index !== -1) state.cartList.splice(index, 1);
+    },
+
     CHANGE_QUANTITY(state, action) {
+      // Mutating the array directly
       const { id } = action.payload.p;
       let newQuantity = action.payload.newQuantity;
       const existingProduct = state.cartList.find((p) => p.id === id);
       if (existingProduct) {
         existingProduct.quantity = newQuantity;
       }
+    },
+
+    CHANGE_TOTAL_SUMMA(state, action) {
+      state.totalSuma = action.payload.totalSuma;
     },
   },
 });

@@ -12,7 +12,7 @@ export default function Cart() {
   }, [shoppingCart]);
 
   function handleRemoveProductById(id) {
-    dispatch({ type: "REMOVE_PRODUCT", id: id });
+    dispatch(productsSliceActions.REMOVE_PRODUCT(id));
   }
 
   function handleTotalSumma() {
@@ -20,10 +20,10 @@ export default function Cart() {
     shoppingCart.forEach((p) => {
       totalSuma += p.price;
     });
-    dispatch({ type: "TOTAL_SUMA", suma: totalSuma });
+    dispatch(productsSliceActions.CHANGE_TOTAL_SUMMA({ totalSuma }));
   }
 
-  //FIX:PAYLOAD MUST BE AN OBJECT
+  //FIX:IF MULTIPLE VALUES, payload must be an object
   function handleQuantityProduct(p, newQuantity) {
     dispatch(productsSliceActions.CHANGE_QUANTITY({ p, newQuantity }));
   }

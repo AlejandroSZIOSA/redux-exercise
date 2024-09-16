@@ -32,7 +32,7 @@ export default function Products() {
       price: p.price,
       quantity: 0, //Add quantity
     };
-    dispatch(productsSliceActions.ADD_PRODUCT_FN(productCartInfo));
+    dispatch(productsSliceActions.ADD_PRODUCT(productCartInfo));
   }
 
   return (
