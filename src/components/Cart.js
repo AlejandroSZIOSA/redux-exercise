@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { productsSliceActions } from "../tools/store";
 
 export default function Cart() {
   const shoppingCart = useSelector((state) => state.cartList);
@@ -22,12 +23,9 @@ export default function Cart() {
     dispatch({ type: "TOTAL_SUMA", suma: totalSuma });
   }
 
-  function handleQuantityProduct(p, value) {
-    console.log(value);
-    dispatch({
-      type: "CHANGE_QUANTITY",
-      payload: { ...p, ...(p.quantity = value) },
-    });
+  //FIX:PAYLOAD MUST BE AN OBJECT
+  function handleQuantityProduct(p, newQuantity) {
+    dispatch(productsSliceActions.CHANGE_QUANTITY({ p, newQuantity }));
   }
 
   return (

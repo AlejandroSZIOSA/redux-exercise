@@ -15,6 +15,14 @@ const productsSlice = createSlice({
     ADD_PRODUCT_FN(state, action) {
       return { ...state, cartList: [...state.cartList, action.payload] };
     },
+    CHANGE_QUANTITY(state, action) {
+      const { id } = action.payload.p;
+      let newQuantity = action.payload.newQuantity;
+      const existingProduct = state.cartList.find((p) => p.id === id);
+      if (existingProduct) {
+        existingProduct.quantity = newQuantity;
+      }
+    },
   },
 });
 
