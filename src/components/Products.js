@@ -4,10 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { productsSliceActions } from "../tools/store";
 
 function ProductCardView(props) {
-  const { name } = props.productInfo;
+  const { name, price } = props.productInfo;
   return (
     <div style={{ display: "flex", gap: 20, padding: "5px 0px 5px 0px" }}>
       <p>{name}</p>
+      <p>Price: {price}</p>
       <button onClick={() => props.handleAddProduct(props.productInfo)}>
         Add to Cart
       </button>
