@@ -1,9 +1,28 @@
-import { createStore } from "redux";
+//import { createStore } from "redux";
 import productsJson from "../JSON/sinusApiData.json";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const initialValuesProducts = productsJson;
+const initialState = {
+  initialValuesProducts: productsJson,
+  cartList: [],
+  totalSuma: 0,
+};
 
-const productsReducer = (
+const productsSlice = createSlice({
+  name: "products",
+  initialState: initialState,
+  reducers: {
+    GET_PRODUCT_LIST_FN(state) {
+      return state.initialValuesProducts;
+    },
+
+    /* ADD_PRODUCT_FN(state) {
+      return { ...state, cartList: [...state.cartList, action.product] };
+    }, */
+  },
+});
+
+/* const productsReducer = (
   state = {
     productList: initialValuesProducts,
     cartList: [],
@@ -46,8 +65,10 @@ const productsReducer = (
   }
 
   return state;
-};
+}; */
 
-const store = createStore(productsReducer);
+const store = configureStore({ reducer: productsSlice.reducer });
+
+export const productsSliceActions = productsSlice.actions;
 
 export default store;

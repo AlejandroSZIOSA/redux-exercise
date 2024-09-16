@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useSelector, useDispatch } from "react-redux";
+import { productsSliceActions } from "../tools/store";
 
 function ProductCardView(props) {
   const { name } = props.productInfo;
@@ -15,12 +16,15 @@ function ProductCardView(props) {
 }
 
 export default function Products() {
-  const products = useSelector((state) => state.productList); //1-Retrieve product list
+  const products = useSelector((state) => state.initialValuesProducts); //1-Retrieve product list
 
   const dispatch = useDispatch(); //2-Dispatch Actions
 
   //Add new Product to the shopping cart List
   //Callback FN with Params Object
+
+  console.log(products);
+
   function handleAddProduct(p) {
     const productCartInfo = {
       id: p.id,
