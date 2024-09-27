@@ -1,1 +1,1 @@
--Disable Button after addTo one product to the Cart 
+-Fix buttons disabled on Products.js with id`s
